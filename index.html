@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CrystalCollector</title>
+
+  <!-- Added link to the jQuery Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Couldn't get link to work so I included it in my html -->
+  <script scr='assets/javascript/game.js'></script>
+
+
+  <!-- Added a link to Bootstrap-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
+
+</head>
+<body style="background-image: url(assets/images/circles-light.png);">
+
+  <div class="container">
+    
+    <!-- This is for the heading -->
+    <div class="row">
+      <div class="col-lg-4 header1">
+        <h1 id="header1">
+          CrystalCollector!
+        </h1>
+      </div>
+    </div>
+
+    <!-- This is for the game information -->
+    <div class="row">
+      <div class="col-lg-4 para1">
+        <p> 
+          You will be given a random number to begin the game.
+        </p>
+        <br>
+
+        <p>
+          There will be four crystal below. By clicking on a crystal you will add a specific amount of points to your total score.
+        </p>
+        <br>
+
+        <p>
+          You win the game by matching your total score to random number, you lose the game if your total score goes above the random number.
+        </p>
+        <br>
+
+        <p>
+          The value of each cystal is hidden from you until you click on it. 
+        </p>
+        <br>
+
+        <p>
+          Each time the game starts the values for each of the gems will be different.
+        </p>
+        <br>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-4 scorebox">
+        <h1><span id="rand_num_box"></span> </h1>
+      </div>
+
+      <div class="col-lg-2 winlossbox">
+        <div>
+          <p>Wins: <span id="win_score"></span> </p>
+          <p>Losses: <span id="loss_score"></span> </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-2">
+        <img id="purp-image" class="img-thumbnail" src="assets/images/purplegem.png"></img>
+      </div>
+
+      <div class="col-lg-2">
+        <img id="orange-image" class="img-thumbnail" src="assets/images/orangegem.png"></img>
+      </div>
+
+      <div class="col-lg-2">
+        <img id="blue-image" class="img-thumbnail" src="assets/images/bluegem.png"></img>
+      </div>
+
+      <div class="col-lg-2">
+        <img id="pink-image" class="img-thumbnail" src="assets/images/pinkgem.png"></img>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-4 bottom1">
+        <p>This is your score: </p>
+      </div>
+    </div>  
+
+    <div class="row">
+      <div class="col-lg-4 bottom2">
+        <h1><span id="scorebox"></span> </h1>
+      </div>
+    </div> 
+  </div> 
+
+<script type="text/javascript">
+  
+      //create all the variables
+      var wins = 0;
+      var losses = 0;
+      var random_num;
+      var player_guess;
+      var purplegem_val;
+      var orangegem_val;
+      var bluegem_val;
+      var pinkgem_val;
+      var totalscore = 0;
+      var counter = 0;
+
+      //function to reset game
+      function game_reset(){
+        random_num = Math.floor((Math.random() * 100) + 10);
+        purplegem_val = Math.floor((Math.random() * 15)+1);
+        orangegem_val = Math.floor((Math.random() * 15)+1);
+        bluegem_val = Math.floor((Math.random() * 15)+1);
+        pinkgem_val = Math.floor((Math.random() * 15)+1);
+        totalscore = 0;
+        counter = 0;
+      };
+
+      //function to update the score
+      function update_score() {
+        $("#rand_num_box").html(random_num);
+        $("#scorebox").html(totalscore);
+        $("#win_score").html(wins);
+        $("#loss_score").html(losses);
+      };
+
+      function check_score() {
+        //check to see if the player won
+        if (totalscore === random_num) {
+        wins++;
+        game_reset();
+      }
+
+      //check to see if the player lost
+      if (totalscore > random_num) {
+        losses++;
+        game_reset();
+      }
+
+    };
+      
+
+    $(document).ready(function() {
+      //start the game and initalize the variables
+      game_reset();
+      update_score();
+
+        //on click event for purple gem
+        $("body").on("click", "#purp-image", function() {
+          totalscore = totalscore + purplegem_val;
+          counter++;
+          update_score();
+          check_score();
+        });
+
+        //on click event for orange gem
+        $("body").on("click", "#orange-image",function() {
+          totalscore = totalscore + orangegem_val;
+          counter++;
+          update_score();
+          check_score();
+        });
+
+        //on click event for blue gem
+        $("body").on("click", "#blue-image", function() {
+          totalscore = totalscore + bluegem_val;
+          counter++;
+          update_score();
+          check_score();
+        });
+
+        //on click event for pink gem
+        $("body").on("click", "#pink-image",function() {
+          totalscore = totalscore + pinkgem_val;
+          counter++;
+          update_score();
+          check_score();
+        });
+    });
+</script>
+</body>
+</html>

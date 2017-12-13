@@ -1,0 +1,43 @@
+.header1 {
+	color: SkyBlue;
+	background-color: lightgrey;
+	text-align: center;
+	margin-bottom: 10px; 
+}
+
+.para1 {
+	color: SteelBlue;
+	background-color: lightgrey;
+	text-align: center;
+	margin-bottom: 10px; 
+	padding-top: 5px;
+}
+
+.scorebox {
+	color: SteelBlue;
+	background-color: MediumSpringGreen;
+	margin-bottom: 10px; 
+	margin-right: 10px;
+	height: 150px;
+}
+
+.winlossbox {
+	color: SteelBlue;
+	background-color: MediumSpringGreen;
+	margin-bottom: 10px; 
+	height: 150px;
+}
+
+.bottom1 {
+	color: SteelBlue;
+	background-color: LightGreen;
+	margin-bottom: 10px; 
+	margin-top: 10px;
+}
+
+.bottom2 {
+	color: SteelBlue;
+	background-color: LightGreen;
+	margin-bottom: 10px; 
+	height: 150px;
+}
